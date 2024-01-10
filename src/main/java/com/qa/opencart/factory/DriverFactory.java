@@ -43,32 +43,22 @@ public class DriverFactory {
 		switch (browserName.toLowerCase().trim()) {
 		case "chrome":
 
-			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
-				// run it on grid:
-				initRemoteDriver(browserName);
-			} else {
-				// run it on local:
-				tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
-			}
+			// run it on local:
+			tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
+
 			break;
 
 		case "firefox":
-			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
-				// run it on grid:
-				initRemoteDriver(browserName);
-			} else {
-				// run it on local:
-				tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
-			}
+
+			// run it on local:
+			tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
+
 			break;
 
 		case "edge":
-			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
-				// run it on grid:
-				initRemoteDriver(browserName);
-			} else {
-				tlDriver.set(new EdgeDriver(optionsManager.getEdgeOptions()));
-			}
+
+			tlDriver.set(new EdgeDriver(optionsManager.getEdgeOptions()));
+
 			break;
 
 		case "safari":
@@ -85,38 +75,6 @@ public class DriverFactory {
 		getDriver().get(prop.getProperty("url"));
 
 		return getDriver();
-
-	}
-
-	/**
-	 * run tests on grid
-	 * 
-	 * @param browserName
-	 */
-	private void initRemoteDriver(String browserName) {
-		System.out.println("Running tests on GRID with browser: " + browserName);
-		
-		try {
-			switch (browserName.toLowerCase().trim()) {
-			case "chrome":
-				tlDriver.set(
-						new RemoteWebDriver(new URL(prop.getProperty("huburl")), optionsManager.getChromeOptions()));
-				break;
-			case "firefox":
-				tlDriver.set(
-						new RemoteWebDriver(new URL(prop.getProperty("huburl")), optionsManager.getFirefoxOptions()));
-				break;
-			case "edge":
-				tlDriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")), optionsManager.getEdgeOptions()));
-				break;
-
-			default:
-				System.out.println("wrong browser info..can not run on grid remote machine....");
-				break;
-			}
-		} catch (MalformedURLException e) {
-
-		}
 
 	}
 
@@ -173,7 +131,6 @@ public class DriverFactory {
 			e.printStackTrace();
 		}
 		return prop;
-		
 
 	}
 
