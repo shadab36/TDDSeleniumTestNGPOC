@@ -60,22 +60,7 @@ pipeline
                 }
             }
         }
-        
-        
-        
-        stage('Publish sanity Extent Report'){
-            steps{
-                     publishHTML([allowMissing: false,
-                                  alwaysLinkToLastBuild: false, 
-                                  keepAll: true, 
-                                  reportDir: 'reports', 
-                                  reportFiles: 'TestExecutionReport.html', 
-                                  reportName: 'HTML Sanity Extent Report', 
-                                  reportTitles: ''])
-            }
-        }
-        
-        
+         
         stage("Deploy to PROD"){
             steps{
                 echo("deploy to PROD")
