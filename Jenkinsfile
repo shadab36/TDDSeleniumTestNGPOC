@@ -33,8 +33,7 @@ pipeline
             }
         }
         
-        
-                
+          
         stage('Regression Automation Tests') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
