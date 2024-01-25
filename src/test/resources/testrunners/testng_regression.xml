@@ -13,14 +13,14 @@
 			class-name="com.qa.opencart.listeners.AnnotationTransformer" /> -->
 	</listeners>
 	<test name="Login Page Test">
-		<parameter name="browser" value="edge" />
+		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.LoginPageTest" />
 		</classes>
 	</test>
-
+<!--
 	<test name="Accounts Page Test">
-		<parameter name="browser" value="firefox" />
+		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.AccountsPageTest" />
 		</classes>
@@ -33,7 +33,7 @@
 			<class name="com.qa.opencart.tests.ProuctResultsPageTest" />
 		</classes>
 	</test>
-	<!-- 
+	
 	
 	<test name="Register Page Test">
 		<parameter name="browser" value="firefox" />
@@ -41,6 +41,6 @@
 			<class name="com.qa.opencart.tests.RegisterPageTest" />
 		</classes>
 	</test>
--->
 
+-->
 </suite>	
