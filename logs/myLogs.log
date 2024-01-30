@@ -1,0 +1,7 @@
+12:53:15.587 [TestNG-tests-1] INFO  - browser name is: chrome
+12:53:15.593 [TestNG-tests-1] INFO  - Running it on chrome browser....
+12:53:15.593 [TestNG-tests-1] INFO  - running it on local
+==
+[INFO ] 2024-01-30 12:54:37.430 [TestNG-tests-1] DriverFactory - browser name is: chrome
+[INFO ] 2024-01-30 12:54:37.436 [TestNG-tests-1] DriverFactory - Running it on chrome browser....
+[INFO ] 2024-01-30 12:54:37.436 [TestNG-tests-1] DriverFactory - running it on local
