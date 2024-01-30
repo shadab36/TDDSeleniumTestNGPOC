@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -26,35 +27,32 @@ public class DriverFactory {
 	Properties prop;
 	OptionsManager optionsManager;
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
-
+	public static Logger log = LogManager.getLogger(DriverFactory.class);
 	public static String highlight = null;
 
 	public WebDriver initDriver(Properties prop) {
-
 		String browserName = prop.getProperty("browser");
 		// String browserName = System.getProperty("browser");
-
-		System.out.println("browser name is: " + browserName);
-
+		// System.out.println("browser name is: " + browserName);
+		log.info("browser name is: " + browserName);
 		highlight = prop.getProperty("highlight");
-
 		optionsManager = new OptionsManager(prop);
-
 		switch (browserName.toLowerCase().trim()) {
 		case "chrome":
-			// log.info("Running it on chrome browser....");
+			log.info("Running it on chrome browser....");
 			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
 				// run it on grid:
 				// log.info("Running it on remote machine");
 				initRemoteDriver(browserName);
 			} else {
 				// run it on local:
-				// log.info("running it on local");
+				log.info("running it on local");
 				tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
 			}
 			break;
 
 		case "firefox":
+			log.info("Running it on firefox browser....");
 			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
 				// run it on grid:
 				initRemoteDriver(browserName);
@@ -65,6 +63,7 @@ public class DriverFactory {
 			break;
 
 		case "edge":
+			log.info("Running it on edge browser....");
 			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
 				// run it on grid:
 				initRemoteDriver(browserName);
@@ -74,19 +73,18 @@ public class DriverFactory {
 			break;
 
 		case "safari":
+			log.info("Running it on safari browser....");
 			tlDriver.set(new SafariDriver());
 			break;
 		default:
-			System.out.println("please pass the right browser name...." + browserName);
+			log.error("please pass the right browser name...." + browserName);
+			// System.out.println("please pass the right browser name...." + browserName);
 			throw new FrameworkException("No Browser Found...");
 		}
-
 		getDriver().manage().deleteAllCookies();
 		getDriver().manage().window().maximize();
 		getDriver().get(prop.getProperty("url"));
-
 		return getDriver();
-
 	}
 
 	/**
@@ -116,9 +114,7 @@ public class DriverFactory {
 				break;
 			}
 		} catch (MalformedURLException e) {
-
 		}
-
 	}
 
 	public static WebDriver getDriver() {
