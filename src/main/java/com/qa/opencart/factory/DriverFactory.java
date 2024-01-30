@@ -42,7 +42,7 @@ public class DriverFactory {
 			log.info("Running it on chrome browser....");
 			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
 				// run it on grid:
-				// log.info("Running it on remote machine");
+				// log.info("Running tests on remote machine");
 				initRemoteDriver(browserName);
 			} else {
 				// run it on local:
