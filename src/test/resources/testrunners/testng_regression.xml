@@ -33,10 +33,6 @@
 		</classes>
 	</test>
 
-
-	
-	
-	
 	<test name="Register Page Test">
 		<parameter name="browser" value="firefox" />
 		<classes>
