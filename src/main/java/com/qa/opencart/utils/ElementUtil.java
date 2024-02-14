@@ -148,9 +148,7 @@ public class ElementUtil {
 			String attrValue = e.getAttribute(attrName);
 			eleAttrList.add(attrValue);
 		}
-
 		return eleAttrList;
-
 	}
 
 	public int getElementsCount(By locator) {
